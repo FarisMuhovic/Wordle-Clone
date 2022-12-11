@@ -10,6 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow-y: hidden;
 }
 nav {
   display: flex;
@@ -47,6 +48,8 @@ nav {
   text-align: center;
   border-radius: 3px;
   color: white;
+  font-size: 25px;
+  font-weight: 1000;
 }
 #keyboard {
   display: flex;
@@ -74,4 +77,164 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 5px;
+}
+.third-row p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modul {
+  position: absolute;
+  top: 20vh;
+  background-color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.445);
+  display: none;
+  overflow: hidden;
+  font-weight: 600;
+}
+
+
+.winanimation div{
+  background-color: green;
+}
+.winanimation div:nth-child(1){
+  animation: win 0.5s;
+  animation-delay: 0.1s;
+}
+.winanimation div:nth-child(2){
+  animation: win 0.5s;
+  animation-delay: 0.2s;
+}
+.winanimation div:nth-child(3){
+  animation: win 0.5s;
+  animation-delay: 0.3s;
+}
+.winanimation div:nth-child(4){
+  animation: win 0.5s;
+  animation-delay: 0.4s;
+}
+.winanimation div:nth-child(5){
+  animation: win 0.5s;
+  animation-delay: 0.5s;
+}
+.tileborder {
+  box-shadow: 0px 0px 1px 1px rgb(194, 194, 194) inset;
+}
+@keyframes win {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-55px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+#statistics {
+  display: none;
+  grid-template-rows: 1fr 2fr 1fr 50px 50px;
+  height: 80vh;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  background-color: rgba(0, 0, 0, 0.877);
+  color: white;
+  padding: 15px;
+  gap: 15px;
+  justify-items: center;
+  align-items: center;
+  box-shadow: none;
+  border-radius: 15px;
+  backdrop-filter: blur(3px);
+  animation: modulshow 1.8s;
+  z-index: 4;
+}
+.afterwin {
+  transition: 0.2s;
+  pointer-events: none;
+  opacity: 0.8;
+}
+@keyframes modulshow {
+  0% {
+    transform: translate(-50% ,1500px);}
+  100% {
+    transform: translate(-50% , -50%);
+  }
+}
+.stats{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid white;
+  width: 100%;
+  font-size: 19px;
+}
+.statsparagraph{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid white;
+  width: 33.333%;
+  height: 100px;
+}
+#winLoseText {
+  overflow: hidden;
+  border-bottom: 1px solid white;
+  width: 100%;
+  padding: 10px;
+  font-size: 22px;
+}
+#playAgain , #cancelStats {
+  overflow: hidden;
+  width: 100%;
+  height: 30px;
+  color: white;
+  font-weight: 1000;
+  font-size: 22px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  transition: 0.2s;
+  border-radius: 5px;
+  padding: 15px;
+}
+#exitStats {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  background-color: transparent;
+  color: white;
+  font-weight: 1000;
+  border: none;
+  cursor: pointer;
+}
+#exitStats:hover {
+  color: rgba(255, 255, 255, 0.445);
+}
+#playAgain {
+  background-color: green;
+} 
+#cancelStats {
+  background-color: rgb(219, 143, 0);
+}
+#playAgain:hover , #cancelStats:hover {
+  background-color: white;
+  color: rgb(29, 29, 29);
 }

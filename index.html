@@ -10,6 +10,32 @@
     <script src="script.js" type="module" async defer></script>
   </head>
   <body>
+    <div class="modul" id="deficitLetters">
+      <p>Not Enough Letters</p>
+    </div>
+    <div class="modul" id="notInWordList">
+      <p>Not In Words List</p>
+    </div>
+    <div class="modul" id="statistics" style="overflow: hidden;">
+      <button id="exitStats">✖</button>
+      <h1>Statistics</h1>
+      <div class="stats">
+        <div class="statsparagraph">
+          <p>0</p>
+          <p>Played</p>
+        </div>
+        <div class="statsparagraph">
+          <p>0</p>
+          <p>Winrate(%)</p>
+        </div>
+        <div class="statsparagraph">
+          <p>0</span>
+          <p>Current Streak</p>
+          </div>
+      </div>
+      <p id="winLoseText">You guessed it.The word was <span>lemon</span></p>
+      <button id="playAgain">Play Again</button>
+    </div>
     <nav>
       <h1>Wordle</h1>
     </nav>
@@ -39,7 +65,7 @@
         <button class="keyboard-button">l</button>
       </div>
     <div class="third-row">
-        <button class="keyboard-button" style="width:80px">Del</button>
+        <button class="keyboard-button" style="width:80px" id="delkey">Del</button>
         <button class="keyboard-button">z</button>
         <button class="keyboard-button">x</button>
         <button class="keyboard-button">c</button>
@@ -47,7 +73,7 @@
         <button class="keyboard-button">b</button>
         <button class="keyboard-button">n</button>
         <button class="keyboard-button">m</button>
-        <button class="keyboard-button"style="width:80px">Enter</button>
+        <button class="keyboard-button"style="width:80px" id="enterkey">Enter</button>
       </div>
     </div>
   </body>

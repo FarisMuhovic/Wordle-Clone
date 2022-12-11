@@ -1,6 +1,9 @@
 import { WORDS } from "./words.js";
 
 const board = document.getElementById("board");
+const deficitLettersModul = document.getElementById("deficitLetters");
+const notInWordListModul = document.getElementById("notInWordList");
+const statisticsModul = document.getElementById("statistics");
 // 1 row has 5 cols
 // 6 rows max
 for (let i = 0; i < 6; i++) {
@@ -54,7 +57,10 @@ const alphabet = [
   "y",
   "z",
 ];
-
+// statistics
+let played = 0;
+let winrate = 0;
+let streak = 0;
 window.addEventListener("keyup", e => {
   appLogic(e, "keyboard");
 });
@@ -69,8 +75,7 @@ function appLogic(e, inputtype) {
       filteredBoardDivs.splice(i, 0, boardDivs[i]);
     }
   }
-  console.log(filteredBoardDivs);
-
+  console.log(board.childNodes[rowcount]);
   if (inputtype == "keyboard") {
     let keypressed = e.key.toLowerCase();
     console.log(keypressed);
@@ -85,17 +90,24 @@ function appLogic(e, inputtype) {
         arrayofGuesses[rowcount].splice(0, 0, guess);
         console.log(arrayofGuesses);
         for (let i = 0; i < guess.length; i++) {
+          filteredBoardDivs[i].classList.add("tileborder");
           console.log(guess[i]);
           if (wordToGuess.includes(guess[i])) {
             if (guess == wordToGuess) {
               console.log("you guessed it, the word is", wordToGuess);
+              document.getElementById("keyboard").classList.add("afterwin");
+              board.childNodes[rowcount].classList.add("winanimation");
+              setTimeout(() => {
+                statisticsModul.style.display = "grid";
+              }, 3500);
+              console.log(board.childNodes[rowcount]);
+              // disable the board after the win
+              rowcount = null;
             }
             if (wordToGuess[i] == guess[i]) {
               console.log(guess[i], "you guessed it in the right order.");
               filteredBoardDivs[i].style.backgroundColor = "green";
-            }
-            // if its not in the order make it orange
-            else {
+            } else {
               console.log(
                 guess[i],
                 "The letter is there but not in the right order."
@@ -109,6 +121,10 @@ function appLogic(e, inputtype) {
         guess = "";
       } else {
         console.log("invalid word");
+        notInWordListModul.style.display = "block";
+        setTimeout(() => {
+          notInWordListModul.style.display = "none";
+        }, 1000);
       }
       console.log(rowcount);
     } else if (
@@ -121,6 +137,11 @@ function appLogic(e, inputtype) {
       filteredBoardDivs[guessCount].innerText = "";
       guess = guess.slice(0, -1);
       console.log(guess);
+    } else if (guess.length < 5) {
+      deficitLettersModul.style.display = "block";
+      setTimeout(() => {
+        deficitLettersModul.style.display = "none";
+      }, 1000);
     }
   } else {
     let keypressed = e.target.innerText.toLowerCase();
@@ -136,17 +157,24 @@ function appLogic(e, inputtype) {
         arrayofGuesses[rowcount].splice(0, 0, guess);
         console.log(arrayofGuesses);
         for (let i = 0; i < guess.length; i++) {
+          filteredBoardDivs[i].classList.add("tileborder");
           console.log(guess[i]);
           if (wordToGuess.includes(guess[i])) {
             if (guess == wordToGuess) {
               console.log("you guessed it, the word is", wordToGuess);
+              document.getElementById("keyboard").classList.add("afterwin");
+              board.childNodes[rowcount].classList.add("winanimation");
+              setTimeout(() => {
+                statisticsModul.style.display = "grid";
+              }, 3500);
+              console.log(board.childNodes[rowcount]);
+              // disable the board after the win
+              rowcount = null;
             }
             if (wordToGuess[i] == guess[i]) {
               console.log(guess[i], "you guessed it in the right order.");
               filteredBoardDivs[i].style.backgroundColor = "green";
-            }
-            // if its not in the order make it orange
-            else {
+            } else {
               console.log(
                 guess[i],
                 "The letter is there but not in the right order."
@@ -160,6 +188,10 @@ function appLogic(e, inputtype) {
         guess = "";
       } else {
         console.log("invalid word");
+        notInWordListModul.style.display = "block";
+        setTimeout(() => {
+          notInWordListModul.style.display = "none";
+        }, 1000);
       }
       console.log(rowcount);
     } else if (keypressed == "del" && guess.length > 0 && guessCount > 0) {
@@ -168,8 +200,26 @@ function appLogic(e, inputtype) {
       filteredBoardDivs[guessCount].innerText = "";
       guess = guess.slice(0, -1);
       console.log(guess);
+    } else if (guess.length < 5) {
+      deficitLettersModul.style.display = "block";
+      setTimeout(() => {
+        deficitLettersModul.style.display = "none";
+      }, 1000);
     }
   }
   console.log(guess);
   console.log(guessCount);
 }
+/// and pop up the statisctics
+const exitStatsBtn = document.getElementById("exitStats");
+exitStatsBtn.addEventListener("click", () => {
+  statisticsModul.style.display = "none";
+});
+const playAgain = document.getElementById("playAgain");
+playAgain.addEventListener("click", () => {
+  location.reload();
+});
+
+// player loses
+// make statistics work
+// local storage
