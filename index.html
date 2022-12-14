@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <script src="script.js" type="module" async defer></script>
   </head>
   <body>
@@ -21,23 +23,30 @@
       <h1>Statistics</h1>
       <div class="stats">
         <div class="statsparagraph">
-          <p>0</p>
+          <p id="gamesPlayed">0</p>
           <p>Played</p>
         </div>
         <div class="statsparagraph">
-          <p>0</p>
+          <p id="winrate">0</p>
           <p>Winrate(%)</p>
         </div>
         <div class="statsparagraph">
-          <p>0</span>
+          <p id="streak">0</span>
           <p>Current Streak</p>
           </div>
       </div>
-      <p id="winLoseText">You guessed it.The word was <span>lemon</span></p>
+      <p id="winLoseText"></p>
       <button id="playAgain">Play Again</button>
     </div>
     <nav>
+      <i class="fa-solid fa-chart-simple" id="statsClick"></i>
       <h1>Wordle</h1>
+      <div class="darkLightMode">
+        <label class="switch" id="labels"> 
+          <input type="checkbox" id="checky">
+          <span class="slider round"></span>
+        </label>
+      </div>
     </nav>
     <div id="board"></div>
     <div id="keyboard">
