@@ -4,7 +4,7 @@ const board = document.getElementById("board");
 const deficitLettersModul = document.getElementById("deficitLetters");
 const notInWordListModul = document.getElementById("notInWordList");
 const statisticsModul = document.getElementById("statistics");
-const winLoseText = document.getElementById('winLoseText')
+const winLoseText = document.getElementById("winLoseText");
 // 1 row has 5 cols
 // 6 rows max
 for (let i = 0; i < 6; i++) {
@@ -85,6 +85,9 @@ if (localStorage.getItem("losses") != null) {
 }
 
 let winrate = (wins / played) * 100;
+if (winrate == NaN) {
+  winrate = 0;
+}
 let streak = null;
 if (localStorage.getItem("streak") != null) {
   streak = localStorage.getItem("streak");
@@ -131,7 +134,7 @@ function appLogic(e, inputtype) {
           setTimeout(() => {
             statisticsModul.style.display = "grid";
           }, 3500);
-          winLoseText.innerHTML = `You failed,The word was ${wordToGuess}.`
+          winLoseText.innerHTML = `You failed,The word was ${wordToGuess}.`;
         }
         for (let i = 0; i < guess.length; i++) {
           filteredBoardDivs[i].classList.add("tileborder");
@@ -154,7 +157,7 @@ function appLogic(e, inputtype) {
               streakUI.innerHTML = localStorage.getItem("streak");
               winrate = (wins / played) * 100;
               winRateUI.innerHTML = Math.round(winrate, 2);
-              winLoseText.innerHTML = `You guessed It,The word was ${wordToGuess}.`
+              winLoseText.innerHTML = `You guessed It,The word was ${wordToGuess}.`;
             }
             if (wordToGuess[i] == guess[i]) {
               filteredBoardDivs[i].style.backgroundColor = "green";
@@ -209,7 +212,7 @@ function appLogic(e, inputtype) {
           setTimeout(() => {
             statisticsModul.style.display = "grid";
           }, 3500);
-          winLoseText.innerHTML = `You failed,The word was ${wordToGuess}.`
+          winLoseText.innerHTML = `You failed,The word was ${wordToGuess}.`;
         }
         for (let i = 0; i < guess.length; i++) {
           filteredBoardDivs[i].classList.add("tileborder");
@@ -232,7 +235,12 @@ function appLogic(e, inputtype) {
               streakUI.innerHTML = localStorage.getItem("streak");
               winrate = (wins / played) * 100;
               winRateUI.innerHTML = Math.round(winrate, 2);
-              winLoseText.innerHTML = `You guessed It,The word was ${wordToGuess}.`
+              winLoseText.innerHTML = `You guessed It,The word was ${wordToGuess}.`;
+            }
+            if (wordToGuess[i] == guess[i]) {
+              filteredBoardDivs[i].style.backgroundColor = "green";
+            } else {
+              filteredBoardDivs[i].style.backgroundColor = "rgb(219, 143, 0)";
             }
           }
         }
