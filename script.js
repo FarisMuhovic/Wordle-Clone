@@ -63,37 +63,25 @@ const winRateUI = document.getElementById("winrate");
 const gamesPlayedUI = document.getElementById("gamesPlayed");
 const streakUI = document.getElementById("streak");
 
-let played = null;
-if (localStorage.getItem("gamesPlayed") != null) {
-  played = localStorage.getItem("gamesPlayed");
-} else {
-  played = 0;
-}
+let played =
+  localStorage.getItem("gamesPlayed") != null
+    ? localStorage.getItem("gamesPlayed")
+    : 0;
 
-let wins = null;
-if (localStorage.getItem("wins") != null) {
-  wins = localStorage.getItem("wins");
-} else {
-  wins = 0;
-}
+let wins =
+  localStorage.getItem("wins") != null ? localStorage.getItem("wins") : 0;
 
-let losses = null;
-if (localStorage.getItem("losses") != null) {
-  losses = localStorage.getItem("losses");
-} else {
-  losses = 0;
-}
+let losses =
+  localStorage.getItem("losses") != null ? localStorage.getItem("losses") : 0;
 
 let winrate = (wins / played) * 100;
 if (winrate == NaN) {
   winrate = 0;
 }
-let streak = null;
-if (localStorage.getItem("streak") != null) {
-  streak = localStorage.getItem("streak");
-} else {
-  streak = 0;
-}
+
+let streak =
+  localStorage.getItem("streak") != null ? localStorage.getItem("streak") : 0;
+
 gamesPlayedUI.innerHTML = localStorage.getItem("gamesPlayed");
 streakUI.innerHTML = localStorage.getItem("streak");
 winRateUI.innerHTML = Math.round(winrate, 2);
